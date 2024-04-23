@@ -14,7 +14,7 @@ exec {'install':
 
 exec {'html':
   provider => shell,
-  command  => 'sudo echo "Holberton School" | sudo tee /var/www/html/index.nginx-debian.html',
+  command  => 'sudo echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html',
 }
 
 exec {'sedConfig':
