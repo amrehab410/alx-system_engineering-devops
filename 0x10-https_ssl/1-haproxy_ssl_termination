@@ -37,14 +37,14 @@ defaults
 	errorfile 502 /etc/haproxy/errors/502.http
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
-listen 1091-lb-01
+listen 531276-lb-01
 	bind *:80
 	mode http
 	balance roundrobin
 	option httpclose
 	option forwardfor
-	server 1091-web-01 35.237.235.204:80 check
-	server 1091-web-02 34.73.24.78:80 check
+	server 531276-web-01 34.229.184.216:80 check
+	server 531276-web-02 54.237.102.129:80 check
    	option forwardfor
    	option http-server-close
 
@@ -55,7 +55,7 @@ frontend www-http
          default_backend www-backend
 
 frontend www-https
-         bind *:443 ssl crt /etc/haproxy/certs/www.redinium.tech.pem
+         bind *:443 ssl crt /etc/haproxy/certs/www.amrehab.tech.pem
          reqadd X-Forwarded-Proto:\ https
          acl letsencrypt-acl path_beg /.well-known/acme-challenge/
          use_backend letsencrypt-backend if letsencrypt-acl
@@ -63,8 +63,8 @@ frontend www-https
 
 backend www-backend
         redirect scheme https if !{ ssl_fc }
-        server 1091-web-01 34.74.141.15:80 check
-        server 1091-web-02 34.73.24.78:80 check
+        server 531276-web-01 34.229.184.216:80 check
+        server 531276-web-02 54.237.102.129:80 check
 
 backend letsencrypt-backend
         server letsencrypt 127.0.0.1:54321
